@@ -8,43 +8,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: '水平方向布局',
+        title: '垂直方向布局',
         home: Scaffold(
-          appBar: AppBar(
-            title: Text('水平方向布局'),
-          ),
-          body: new Row(
-            children: <Widget>[
-              Expanded(
-                child: RaisedButton(
-                  onPressed: () {},
-                  color: Colors.red,
-                  child: Text('red button '),
-                ),
+            appBar: AppBar(
+              title: Text('垂直方向布局'),
+            ),
+            body: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center, //对齐方式
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: Text('test 1'),
+                  ),
+                  Expanded(
+                    child: Text('take your time '),
+                  ),
+                  Expanded(
+                    child: Text('don 123312312312 '),
+                  ),
+                  Expanded(
+                    child: Text('test dasdasfasdfsdfdsfsd'),
+                  ),
+                ],
               ),
-              Expanded(
-                child: RaisedButton(
-                  onPressed: () {},
-                  color: Colors.yellow,
-                  child: Text('yellow button '),
-                ),
-              ),
-              Expanded(
-                child: RaisedButton(
-                  onPressed: () {},
-                  color: Colors.blue,
-                  child: Text('blue button '),
-                ),
-              ),
-              Expanded(
-                child: RaisedButton(
-                  onPressed: () {},
-                  color: Colors.orange,
-                  child: Text('orange button'),
-                ),
-              ),
-            ],
-          ),
-        ));
+            )));
   }
 }
