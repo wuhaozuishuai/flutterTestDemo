@@ -7,25 +7,45 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var stack = Stack(
-      alignment: const FractionalOffset(0.5, 0.8),
-      children: <Widget>[
-        CircleAvatar(
-          backgroundImage: NetworkImage(
-              'http://bpic.588ku.com/element_origin_min_pic/19/12/04/2294de075e1ea4fcbb33f1f8ef2b63f5.jpg'),
-          radius: 100.0,
-        ),
-        Positioned(
-          top: 10,
-          left: 10,
-          child: Text('take your time'),
-        ),
-        Positioned(
-          bottom: 10,
-          right: 10,
-          child: Text('take your time ++1'),
-        ),
-      ],
+    var card = Card(
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            title: Text(
+              'take your time',
+              style: TextStyle(fontWeight: FontWeight.w300),
+            ),
+            subtitle: Text('fellow me'),
+            leading: Icon(
+              Icons.access_alarm_outlined,
+              color: Colors.lightBlue,
+            ),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              'take your time',
+              style: TextStyle(fontWeight: FontWeight.w300),
+            ),
+            subtitle: Text('fellow me'),
+            leading: Icon(
+              Icons.access_alarm_outlined,
+              color: Colors.lightBlue,
+            ),
+          ),
+          ListTile(
+            title: Text(
+              'take your time',
+              style: TextStyle(fontWeight: FontWeight.w300),
+            ),
+            subtitle: Text('fellow me'),
+            leading: Icon(
+              Icons.access_alarm_outlined,
+              color: Colors.lightBlue,
+            ),
+          )
+        ],
+      ),
     );
     return MaterialApp(
         title: '垂直方向布局',
@@ -34,7 +54,7 @@ class MyApp extends StatelessWidget {
               title: Text('垂直方向布局'),
             ),
             body: Center(
-              child: stack,
+              child: card,
             )));
   }
 }
