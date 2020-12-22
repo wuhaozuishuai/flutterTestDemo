@@ -1,60 +1,54 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_app_test/main1.dart';
 
-//D:\Program Files\Nox\bin
-// nox_adb.exe connect 127.0.0.1:62001
-void main() => runApp(MyApp());
+void main() {
+  runApp(MaterialApp(
+    title: "导航演示",
+    home: FirstScreen(),
+  ));
+}
 
-class MyApp extends StatelessWidget {
+class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var card = Card(
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            title: Text(
-              'take your time',
-              style: TextStyle(fontWeight: FontWeight.w300),
-            ),
-            subtitle: Text('fellow me'),
-            leading: Icon(
-              Icons.access_alarm_outlined,
-              color: Colors.lightBlue,
-            ),
-          ),
-          Divider(),
-          ListTile(
-            title: Text(
-              'take your time',
-              style: TextStyle(fontWeight: FontWeight.w300),
-            ),
-            subtitle: Text('fellow me'),
-            leading: Icon(
-              Icons.access_alarm_outlined,
-              color: Colors.lightBlue,
-            ),
-          ),
-          ListTile(
-            title: Text(
-              'take your time',
-              style: TextStyle(fontWeight: FontWeight.w300),
-            ),
-            subtitle: Text('fellow me'),
-            leading: Icon(
-              Icons.access_alarm_outlined,
-              color: Colors.lightBlue,
-            ),
-          )
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('导航页面'),
+      ),
+      body: Center(
+        child: RaisedButton(
+          child: Text('查看详情页面'),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => secondScreen(), //跳转的路由
+                ));
+          },
+        ),
       ),
     );
-    return MaterialApp(
-        title: '垂直方向布局',
-        home: Scaffold(
-            appBar: AppBar(
-              title: Text('垂直方向布局'),
-            ),
-            body: Center(
-              child: card,
-            )));
+  }
+}
+
+class secondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('详情页面'),
+        ),
+        body: Center(
+          child: RaisedButton(
+            child: Text('返回'),
+            onPressed: () {
+              Navigator.pop(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FirstScreen(), //跳转的路由
+                  ));
+            },
+          ),
+        ));
   }
 }
