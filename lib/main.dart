@@ -15,13 +15,16 @@ class MyApp extends StatelessWidget {
               'http://bpic.588ku.com/element_origin_min_pic/19/12/04/2294de075e1ea4fcbb33f1f8ef2b63f5.jpg'),
           radius: 100.0,
         ),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.lightBlue,
-          ),
-          padding: EdgeInsets.all(5),
+        Positioned(
+          top: 10,
+          left: 10,
           child: Text('take your time'),
-        )
+        ),
+        Positioned(
+          bottom: 10,
+          right: 10,
+          child: Text('take your time ++1'),
+        ),
       ],
     );
     return MaterialApp(
