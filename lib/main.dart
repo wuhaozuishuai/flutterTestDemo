@@ -2,63 +2,74 @@ import 'package:flutter/material.dart';
 
 //D:\Program Files\Nox\bin
 // nox_adb.exe connect 127.0.0.1:62001
-// import 'package:flutter_app_test/main1.dart';
-class Product {
-  final String title; //商品标题
-  final String description; //商品描述
-  Product(this.title, this.description);
-}
-
-void main(List<String> args) {
+void main() {
   runApp(MaterialApp(
-      title: '导航数据传递接受',
-      home: ProductList(
-        products: List.generate(
-            20, (index) => Product("商品 $index", '商品描述，编号：$index')),
-      )));
+    title: '页面跳转返回数据',
+    home: FirstPage(),
+  ));
 }
 
-class ProductList extends StatelessWidget {
-  final List<Product> products;
-  ProductList({Key key, @required this.products}) : super(key: key);
-
+class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('商品列表'),
+        title: Text('主页面'),
       ),
-      body: ListView.builder(
-        itemCount: products.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(products[index].title),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        ProductDetail(product: products[index]),
-                  ));
-            },
-          );
-        },
+      body: Center(
+        child: RouteButton(),
       ),
     );
   }
 }
 
-class ProductDetail extends StatelessWidget {
-  final Product product;
-  // const ProductDetail({Key key}) : super(key: key);
-  ProductDetail({Key key, @required this.product}) : super(key: key);
+class RouteButton extends StatelessWidget {
+  const RouteButton({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      onPressed: () {
+        _navigateToChildPage(context);
+      },
+      child: Text('to子页面'),
+    );
+  }
+
+  _navigateToChildPage(BuildContext context) async {
+    final result = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => PageSon()));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('$result'),
+    ));
+  }
+}
+
+class PageSon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('商品详情，${product.title}'),
+        title: Text('this is pageSon'),
       ),
-      body: Center(child: Text('${product.description}')),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            RaisedButton(
+              child: Text('子项111'),
+              onPressed: () {
+                Navigator.pop(context, '子项一返回数据');
+              },
+            ),
+            RaisedButton(
+              child: Text('子项222'),
+              onPressed: () {
+                Navigator.pop(context, '子项二返回数据');
+              },
+            )
+          ],
+        ),
+      ),
     );
   }
 }
